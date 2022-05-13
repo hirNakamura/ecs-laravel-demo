@@ -3,6 +3,8 @@
     "networkMode": "awsvpc",
     "containerDefinitions": [
       {
+        "name": "nginx",
+        "image": "nginx:latest",
         "portMappings": [
           {
             "hostPort": 80,
@@ -10,20 +12,18 @@
             "containerPort": 80
           }
         ],
-        "image": "nginx:latest",,
-        "essential": true,
-        "name": "nginx"
+        "essential": true
       },
       {
+        "name": "laravel",
         "image": "php:8.0-fpm",
-        "essential": true,
-        "name": "laravel"
+        "essential": true
       }
     ],
     "runtimePlatform": {
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
-      },
+    },
     "requiresCompatibilities": [
         "FARGATE"
     ],
