@@ -1,20 +1,8 @@
 {
-    "ipcMode": null,
-    "executionRoleArn": "arn:aws:iam::975720171581:role/ecsTaskExecutionRole",
+    "family": "demo-task",
+    "networkMode": "awsvpc",
     "containerDefinitions": [
       {
-        "dnsSearchDomains": null,
-        "environmentFiles": null,
-        "logConfiguration": {
-          "logDriver": "awslogs",
-          "secretOptions": null,
-          "options": {
-            "awslogs-group": "/ecs/demo-task",
-            "awslogs-region": "us-east-2",
-            "awslogs-stream-prefix": "ecs"
-          }
-        },
-        "entryPoint": [],
         "portMappings": [
           {
             "hostPort": 80,
@@ -22,101 +10,24 @@
             "containerPort": 80
           }
         ],
-        "command": [],
-        "linuxParameters": null,
-        "cpu": 256,
-        "environment": [],
-        "resourceRequirements": null,
-        "ulimits": null,
-        "dnsServers": null,
-        "mountPoints": [],
-        "workingDirectory": null,
-        "secrets": null,
-        "dockerSecurityOptions": null,
-        "memory": null,
-        "memoryReservation": 512,
-        "volumesFrom": [],
-        "stopTimeout": null,
-        "image": "nginx:latest",
-        "startTimeout": null,
-        "firelensConfiguration": null,
-        "dependsOn": null,
-        "disableNetworking": null,
-        "interactive": null,
-        "healthCheck": null,
+        "image": "nginx:latest",,
         "essential": true,
-        "links": [],
-        "hostname": null,
-        "extraHosts": null,
-        "pseudoTerminal": null,
-        "user": null,
-        "readonlyRootFilesystem": null,
-        "dockerLabels": null,
-        "systemControls": null,
-        "privileged": null,
         "name": "nginx"
       },
       {
-        "dnsSearchDomains": null,
-        "environmentFiles": null,
-        "logConfiguration": {
-          "logDriver": "awslogs",
-          "secretOptions": null,
-          "options": {
-            "awslogs-group": "/ecs/demo-task",
-            "awslogs-region": "us-east-2",
-            "awslogs-stream-prefix": "ecs"
-          }
-        },
-        "entryPoint": null,
-        "portMappings": [],
-        "command": null,
-        "linuxParameters": null,
-        "cpu": 0,
-        "environment": [],
-        "resourceRequirements": null,
-        "ulimits": null,
-        "dnsServers": null,
-        "mountPoints": [],
-        "workingDirectory": null,
-        "secrets": null,
-        "dockerSecurityOptions": null,
-        "memory": null,
-        "memoryReservation": null,
-        "volumesFrom": [],
-        "stopTimeout": null,
         "image": "php:8.0-fpm",
-        "startTimeout": null,
-        "firelensConfiguration": null,
-        "dependsOn": null,
-        "disableNetworking": null,
-        "interactive": null,
-        "healthCheck": null,
         "essential": true,
-        "links": null,
-        "hostname": null,
-        "extraHosts": null,
-        "pseudoTerminal": null,
-        "user": null,
-        "readonlyRootFilesystem": null,
-        "dockerLabels": null,
-        "systemControls": null,
-        "privileged": null,
         "name": "laravel"
       }
     ],
-    "placementConstraints": [],
-    "memory": "512",
-    "taskRoleArn": null,
-    "family": "demo-task",
-    "pidMode": null,
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+      },
     "requiresCompatibilities": [
-      "FARGATE"
+        "FARGATE"
     ],
-    "networkMode": "awsvpc",
-    "runtimePlatform": null,
+    "executionRoleArn": "ecsTaskExecutionRole",
     "cpu": "256",
-    "inferenceAccelerators": null,
-    "proxyConfiguration": null,
-    "volumes": []
+    "memory": "512"
   }
