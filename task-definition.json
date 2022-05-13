@@ -12,12 +12,16 @@
             "containerPort": 80
           }
         ],
-        "essential": true
+        "essential": true,
+        "cpu": "256",
+        "memory": "512"
       },
       {
         "name": "laravel",
         "image": "php:8.0-fpm",
-        "essential": true
+        "essential": true,
+        "cpu": "256",
+        "memory": "512"
       }
     ],
     "runtimePlatform": {
