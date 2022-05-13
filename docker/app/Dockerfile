@@ -8,7 +8,7 @@ RUN apt-get update && \
 	docker-php-ext-install intl pdo_mysql zip bcmath
 
 # config file COPY
-COPY php.ini /usr/local/etc/php/php.ini
+COPY /docker/app/php.ini /usr/local/etc/php/php.ini
 
 # install Composer
 COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer
