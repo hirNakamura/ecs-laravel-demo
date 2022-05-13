@@ -67,28 +67,6 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Build, tag, and push image to Amazon ECR(Laravel)
-      id: build-image-laravel
-      env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        IMAGE_TAG: ${{ github.sha }}
-      run: |
-        # Build a docker container and
-        # push it to ECR so that it can
-        # be deployed to ECS.
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY_LARAVAL:$IMAGE_TAG ./docker/app
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY_LARAVAL:$IMAGE_TAG
-        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY_LARAVAL:$IMAGE_TAG"
-
-    - name: Fill in the new image ID in the Amazon ECS task definition(Laravel)
-      id: task-def-laravel
-      uses: aws-actions/amazon-ecs-render-task-definition@v1
-      with:
-        task-definition: ${{ env.ECS_TASK_DEFINITION }}
-        container-name: ${{ env.CONTAINER_NAME_LARAVAL }}
-        image: ${{ steps.build-image-laravel.outputs.image }}
-
-
     - name: Build, tag, and push image to Amazon ECR(Nginx)
       id: build-image-nginx
       env:
@@ -110,11 +88,31 @@ jobs:
         container-name: ${{ env.ONTAINER_NAME_NGINX }}
         image: ${{ steps.build-image-nginx.outputs.image }}
 
+    - name: Build, tag, and push image to Amazon ECR(Laravel)
+      id: build-image-laravel
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        IMAGE_TAG: ${{ github.sha }}
+      run: |
+        # Build a docker container and
+        # push it to ECR so that it can
+        # be deployed to ECS.
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY_LARAVAL:$IMAGE_TAG ./docker/app
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY_LARAVAL:$IMAGE_TAG
+        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY_LARAVAL:$IMAGE_TAG"
+
+    - name: Fill in the new image ID in the Amazon ECS task definition(Laravel)
+      id: task-def-laravel
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: ${{ env.ECS_TASK_DEFINITION }}
+        container-name: ${{ env.CONTAINER_NAME_LARAVAL }}
+        image: ${{ steps.build-image-laravel.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
-        task-definition: ${{ steps.task-def.outputs.task-definition }}
+        task-definition: ${{ steps.task-def-laravel.outputs.task-definition }}
         service: ${{ env.ECS_SERVICE }}
         cluster: ${{ env.ECS_CLUSTER }}
         wait-for-service-stability: true
