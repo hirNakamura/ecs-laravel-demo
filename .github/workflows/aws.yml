@@ -80,14 +80,6 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY_NGINX:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY_NGINX:$IMAGE_TAG"
 
-    - name: Fill in the new image ID in the Amazon ECS task definition(Nginx)
-      id: task-def-nginx
-      uses: aws-actions/amazon-ecs-render-task-definition@v1
-      with:
-        task-definition: ${{ env.ECS_TASK_DEFINITION }}
-        container-name: ${{ env.ONTAINER_NAME_NGINX }}
-        image: ${{ steps.build-image-nginx.outputs.image }}
-
     - name: Build, tag, and push image to Amazon ECR(Laravel)
       id: build-image-laravel
       env:
@@ -101,11 +93,19 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY_LARAVAL:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY_LARAVAL:$IMAGE_TAG"
 
+    - name: Fill in the new image ID in the Amazon ECS task definition(Nginx)
+      id: task-def-nginx
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: ${{ env.ECS_TASK_DEFINITION }}
+        container-name: ${{ env.ONTAINER_NAME_NGINX }}
+        image: ${{ steps.build-image-nginx.outputs.image }}
+
     - name: Fill in the new image ID in the Amazon ECS task definition(Laravel)
       id: task-def-laravel
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: ${{ env.ECS_TASK_DEFINITION }}
+        task-definition: ${{ steps.task-def-nginx.outputs.task-definition }}
         container-name: ${{ env.CONTAINER_NAME_LARAVAL }}
         image: ${{ steps.build-image-laravel.outputs.image }}
 
