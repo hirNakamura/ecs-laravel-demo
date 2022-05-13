@@ -68,7 +68,7 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v1
 
     - name: Build, tag, and push image to Amazon ECR(Laravel)
-      id: build-image
+      id: build-image-laravel
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         IMAGE_TAG: ${{ github.sha }}
@@ -81,7 +81,7 @@ jobs:
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY_LARAVAL:$IMAGE_TAG"
 
     - name: Fill in the new image ID in the Amazon ECS task definition(Laravel)
-      id: task-def
+      id: task-def-laravel
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: ${{ env.ECS_TASK_DEFINITION }}
@@ -90,7 +90,7 @@ jobs:
 
 
     - name: Build, tag, and push image to Amazon ECR(Nginx)
-      id: build-image
+      id: build-image-nginx
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         IMAGE_TAG: ${{ github.sha }}
@@ -103,7 +103,7 @@ jobs:
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY_NGINX:$IMAGE_TAG"
 
     - name: Fill in the new image ID in the Amazon ECS task definition(Nginx)
-      id: task-def
+      id: task-def-nginx
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: ${{ env.ECS_TASK_DEFINITION }}
