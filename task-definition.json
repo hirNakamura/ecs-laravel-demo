@@ -108,50 +108,7 @@
     "placementConstraints": [],
     "memory": "512",
     "taskRoleArn": null,
-    "compatibilities": [
-      "EC2",
-      "FARGATE"
-    ],
-    "taskDefinitionArn": "arn:aws:ecs:us-east-2:975720171581:task-definition/demo-task:2",
     "family": "demo-task",
-    "requiresAttributes": [
-      {
-        "targetId": null,
-        "targetType": null,
-        "value": null,
-        "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
-      },
-      {
-        "targetId": null,
-        "targetType": null,
-        "value": null,
-        "name": "ecs.capability.execution-role-awslogs"
-      },
-      {
-        "targetId": null,
-        "targetType": null,
-        "value": null,
-        "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
-      },
-      {
-        "targetId": null,
-        "targetType": null,
-        "value": null,
-        "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
-      },
-      {
-        "targetId": null,
-        "targetType": null,
-        "value": null,
-        "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
-      },
-      {
-        "targetId": null,
-        "targetType": null,
-        "value": null,
-        "name": "ecs.capability.task-eni"
-      }
-    ],
     "pidMode": null,
     "requiresCompatibilities": [
       "FARGATE"
@@ -159,8 +116,6 @@
     "networkMode": "awsvpc",
     "runtimePlatform": null,
     "cpu": "256",
-    "revision": 2,
-    "status": "ACTIVE",
     "inferenceAccelerators": null,
     "proxyConfiguration": null,
     "volumes": []
