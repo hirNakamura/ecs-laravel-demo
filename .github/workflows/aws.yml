@@ -86,7 +86,7 @@ jobs:
       with:
         task-definition: ${{ env.ECS_TASK_DEFINITION }}
         container-name: ${{ env.CONTAINER_NAME_LARAVAL }}
-        image: ${{ steps.build-image.outputs.image }}
+        image: ${{ steps.build-image-laravel.outputs.image }}
 
 
     - name: Build, tag, and push image to Amazon ECR(Nginx)
@@ -108,7 +108,7 @@ jobs:
       with:
         task-definition: ${{ env.ECS_TASK_DEFINITION }}
         container-name: ${{ env.ONTAINER_NAME_NGINX }}
-        image: ${{ steps.build-image.outputs.image }}
+        image: ${{ steps.build-image-nginx.outputs.image }}
 
 
     - name: Deploy Amazon ECS task definition
