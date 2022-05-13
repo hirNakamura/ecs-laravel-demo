@@ -1,0 +1,28 @@
+{
+    "family": "demo-task",
+    "networkMode": "awsvpc",
+    "containerDefinitions": [
+      {
+        "name": "laravel",
+        "image": "php:8.0-fpm",
+        "portMappings": [
+          {
+            "containerPort": 80,
+            "hostPort": 80,
+            "protocol": "tcp"
+          }
+        ],
+        "essential": true
+      }
+    ],
+    "runtimePlatform": {
+      "cpuArchitecture": "X86_64",
+      "operatingSystemFamily": "LINUX"
+    },
+    "requiresCompatibilities": [
+      "FARGATE"
+    ],
+    "executionRoleArn": "ecsTaskExecutionRole",
+    "cpu": "256",
+    "memory": "512"
+}
