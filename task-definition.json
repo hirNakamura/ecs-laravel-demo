@@ -4,7 +4,7 @@
     "containerDefinitions": [
       {
         "name": "nginx",
-        "image": "nginx:latest",
+        "image": "nginx:1.20-alpine",
         "portMappings": [
           {
             "hostPort": 80,
