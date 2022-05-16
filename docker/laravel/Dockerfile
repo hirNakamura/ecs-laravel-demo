@@ -23,3 +23,5 @@ RUN php artisan cache:clear \
 COPY ./docker/laravel/php.ini /usr/local/etc/php/php.ini
 
 WORKDIR /app
+
+RUN chown -R www-data:www-data storage
