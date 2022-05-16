@@ -38,7 +38,7 @@
 			"environment": [
 				{
 					"name": "APP_ENV",
-					"value": "production"
+					"value": "develop"
 				},
 				{
 					"name": "APP_DEBUG",
