@@ -1,5 +1,7 @@
 FROM php:8.0-fpm
 
+COPY ./src /app
+
 ENV TZ Asia/Tokyo
 
 # install Library
