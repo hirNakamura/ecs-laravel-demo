@@ -52,7 +52,7 @@
             "secrets": [
                 {
                     "name": "APP_KEY",
-                    "valueFrom": "/APP_KEY"
+                    "valueFrom": "APP_KEY"
                 }
             ],
 			"privileged": false,
