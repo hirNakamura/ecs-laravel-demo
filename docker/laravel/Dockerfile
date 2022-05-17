@@ -20,7 +20,7 @@ RUN php artisan cache:clear \
      && php artisan view:clear
 
 # config file COPY
-COPY ./docker/laravel/php.ini /usr/local/etc/php/php.ini
+COPY ./docker/laravel/ecs/php.ini /usr/local/etc/php/php.ini
 
 WORKDIR /app
 
